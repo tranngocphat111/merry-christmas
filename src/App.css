@@ -1,0 +1,11 @@
+/* App styles are now in Tailwind */
+#root {
+  width: 100%;
+  min-height: 100vh;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&display=swap');
+
+.font-handwriting {
+  font-family: 'Dancing Script', cursive;
+}
