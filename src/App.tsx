@@ -120,9 +120,6 @@ function App() {
         )}
       </AnimatePresence>
 
-      {/* Music toggle */}
-      <MusicToggle autoPlay={true} />
-
       {/* Decorative elements - floating emojis */}
       <motion.div
         className="fixed top-10 left-10 text-4xl md:text-6xl z-0 pointer-events-none"
@@ -194,6 +191,9 @@ function App() {
       >
         🌟
       </motion.div>
+
+      {/* Music toggle - Always on top */}
+      <MusicToggle autoPlay={true} />
     </div>
   );
 }

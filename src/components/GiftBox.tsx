@@ -319,7 +319,7 @@ export const GiftBox = ({ onOpen }: GiftBoxProps) => {
           }}
           transition={{ duration: 3, repeat: Infinity }}
         >
-          Chạm vào món quà dành đi Béee
+          Chạm vào hộp quà đi Béee
         </motion.p>
         
         <motion.div

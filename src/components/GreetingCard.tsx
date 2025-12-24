@@ -9,7 +9,16 @@ interface GreetingCardProps {
 export const GreetingCard = ({ photo }: GreetingCardProps) => {
   const [displayedText, setDisplayedText] = useState('');
   const [showQuote, setShowQuote] = useState(true);
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
   const textContainerRef = useRef<HTMLDivElement>(null);
+  
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
   
   const quote = "Em là món quà Giáng sinh đẹp nhất của anh";
 
@@ -54,7 +63,7 @@ Merry Christmas ❤️
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
-      padding: window.innerWidth > 768 ? '80px 20px 40px 20px' : '60px 15px 30px 15px',
+      padding: isMobile ? '60px 10px 80px 10px' : '80px 20px 40px 20px',
       position: 'relative',
       background: 'radial-gradient(circle at 20% 20%, rgba(139,0,0,0.2), transparent 40%), radial-gradient(circle at 80% 80%, rgba(25,25,112,0.2), transparent 40%), radial-gradient(circle at 50% 50%, rgba(255,215,0,0.05), transparent 60%)',
       overflow: 'hidden',
@@ -163,7 +172,7 @@ Merry Christmas ❤️
       >
         {/* Floating quote banner */}
         <AnimatePresence>
-          {showQuote && window.innerWidth > 768 && (
+          {showQuote && (
             <motion.div
               initial={{ y: -100, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
@@ -171,12 +180,12 @@ Merry Christmas ❤️
               transition={{ duration: 0.6 }}
               style={{
                 position: 'fixed',
-                top: '20px',
-                left: '50%',
-                transform: 'translateX(-50%)',
-                zIndex: 50,
-                width: '90%',
-                maxWidth: '600px',
+                top: isMobile ? '8px' : '20px',
+                left: isMobile ? '5%' : '50%',
+                transform: isMobile ? 'none' : 'translateX(-50%)',
+                zIndex: 40,
+                width: isMobile ? '90%' : '85%',
+                maxWidth: isMobile ? 'calc(100vw - 10%)' : '600px',
                 textAlign: 'center',
               }}
             >
@@ -184,10 +193,10 @@ Merry Christmas ❤️
                 style={{
                   background: 'linear-gradient(135deg, rgba(220,20,60,0.98), rgba(139,0,0,0.98))',
                   backdropFilter: 'blur(30px)',
-                  padding: window.innerWidth > 768 ? '25px 50px' : '18px 35px',
-                  borderRadius: '60px',
+                  padding: isMobile ? '10px 15px' : '25px 50px',
+                  borderRadius: isMobile ? '30px' : '60px',
                   boxShadow: '0 25px 70px rgba(220,20,60,0.6), 0 10px 40px rgba(0,0,0,0.4), 0 0 100px rgba(255,215,0,0.4), inset 0 1px 2px rgba(255,255,255,0.3)',
-                  border: '3px solid rgba(255,215,0,0.5)',
+                  border: isMobile ? '2px solid rgba(255,215,0,0.5)' : '3px solid rgba(255,215,0,0.5)',
                   position: 'relative',
                   overflow: 'hidden',
                 }}
@@ -208,14 +217,17 @@ Merry Christmas ❤️
                 />
                 <p style={{
                   color: '#FFD700',
-                  fontSize: window.innerWidth > 768 ? '22px' : '18px',
+                  fontSize: isMobile ? '11px' : '22px',
                   fontWeight: '700',
                   margin: 0,
                   fontFamily: 'Georgia, serif',
                   textShadow: '0 0 30px rgba(255,215,0,0.8), 0 2px 20px rgba(0,0,0,0.5)',
-                  letterSpacing: '0.8px',
+                  letterSpacing: isMobile ? '0.2px' : '0.8px',
                   position: 'relative',
                   zIndex: 1,
+                  padding: isMobile ? '0 3px' : '0',
+                  wordBreak: 'keep-all',
+                  lineHeight: isMobile ? '1.2' : '1.5',
                 }}>
                   ✨ {quote} ✨
                 </p>
@@ -264,7 +276,7 @@ Merry Christmas ❤️
 
           <div style={{
             display: 'grid',
-            gridTemplateColumns: window.innerWidth > 768 ? '1fr 1fr' : '1fr',
+            gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr',
             gap: 0,
           }}>
             {/* Photo section */}
