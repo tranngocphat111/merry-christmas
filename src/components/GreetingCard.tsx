@@ -24,7 +24,7 @@ export const GreetingCard = ({ photo }: GreetingCardProps) => {
 
 const fullText = `Giáng sinh an lành nhé bé 🎄
 
-Năm nay mình không đi chơi chung được và cũng không có quà tặng em, nhưng anh vẫn muốn gửi đến em những điều tốt đẹp nhất. Cảm ơn em đã luôn ở đó và làm mỗi ngày của anh thêm ý nghĩa.
+Năm nay mình không đi chơi được và anh cũng không có quà tặng em, nhưng anh vẫn muốn gửi đến em những điều tốt đẹp nhất. Cảm ơn em đã luôn ở đó và làm mỗi ngày của anh thêm ý nghĩa.
 
 Chúc em một Giáng sinh ấm áp, vui vẻ. Mong sớm được gặp lại em.
 
